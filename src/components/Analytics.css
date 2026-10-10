@@ -1,21 +1,13 @@
 
-/* Analytics section */
-.app {
-  --chart-text: #9a8aa2;
-  --chart-grid: #f0e5f0;
-  --chart-hover: #fff0f6;
-  --chart-tooltip: #ffffff;
-}
-
-.app.dark {
-  --chart-text: #b7a8c4;
-  --chart-grid: #41364c;
-  --chart-hover: #3d2b41;
-  --chart-tooltip: #2b2538;
-}
+/* ==============================
+   HABIT ANALYTICS
+================================ */
 
 .analytics-section {
-  margin-top: 25px;
+  width: 100%;
+  min-width: 0;
+  margin-top: 28px;
+  color: var(--text);
 }
 
 .analytics-heading {
@@ -25,22 +17,31 @@
 .analytics-heading h2 {
   margin: 0;
   color: var(--text);
-  font: 800 26px Nunito, sans-serif;
+  font-family: "Nunito", sans-serif;
+  font-size: 26px;
+  font-weight: 800;
 }
 
-.analytics-heading > p:last-child {
-  margin: 7px 0 0;
+.analytics-heading p {
+  margin: 6px 0 0;
   color: var(--muted);
-  font-size: 12px;
+  font-size: 13px;
+  line-height: 1.5;
 }
+
+/* Chart layout */
 
 .analytics-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 16px;
+  align-items: stretch;
+  gap: 18px;
+  width: 100%;
+  min-width: 0;
 }
 
 .chart-card {
+  box-sizing: border-box;
   min-width: 0;
   padding: 20px;
   overflow: hidden;
@@ -50,47 +51,75 @@
   box-shadow: 0 6px 25px #65476508;
 }
 
-.chart-heading {
+/* Chart titles and dropdown */
+
+.chart-header {
   display: flex;
   align-items: center;
-  gap: 11px;
-  margin-bottom: 14px;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 8px;
 }
 
-.chart-icon {
-  display: grid;
-  width: 40px;
-  height: 40px;
-  flex-shrink: 0;
-  place-items: center;
-  border-radius: 13px;
-  background: var(--soft);
-  font-size: 20px;
-}
-
-.chart-heading h3 {
+.chart-header h3 {
   margin: 0;
   color: var(--text);
-  font: 800 15px Nunito, sans-serif;
+  font-family: "Nunito", sans-serif;
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 1.4;
 }
 
-.chart-heading p {
-  margin: 4px 0 0;
+.chart-description {
+  margin: 0 0 14px;
   color: var(--muted);
-  font-size: 11px;
+  font-size: 12px;
+  line-height: 1.5;
 }
 
-.weekly-chart,
-.trend-chart {
-  min-height: 320px;
+.trend-select {
+  box-sizing: border-box;
+  max-width: 100%;
+  padding: 8px 28px 8px 11px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--card);
+  color: var(--text);
+  font-family: inherit;
+  font-size: 12px;
+  cursor: pointer;
 }
 
-.donut-chart {
+.trend-select:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* IMPORTANT:
+   ResponsiveContainer needs a parent with a real height.
+   This fixes the invisible graphs.
+*/
+
+.chart-container {
+  position: relative;
+  width: 100%;
+  min-width: 0;
+  height: 260px;
+}
+
+.chart-container svg {
+  display: block;
+}
+
+/* Donut chart */
+
+.donut-card {
   grid-column: 1 / -1;
 }
 
-.donut-wrapper {
-  position: relative;
+.donut-container {
+  height: 250px;
   max-width: 320px;
   margin: 0 auto;
 }
@@ -107,69 +136,71 @@
 
 .donut-center strong {
   color: var(--text);
-  font: 800 29px Nunito, sans-serif;
+  font-family: "Nunito", sans-serif;
+  font-size: 30px;
+  font-weight: 800;
+  line-height: 1.2;
 }
 
 .donut-center span {
-  margin-top: 3px;
-  color: var(--muted);
-  font-size: 11px;
-}
-
-.donut-legend {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 18px;
-  margin: 4px 0 8px;
-}
-
-.donut-legend > span {
-  display: flex;
-  align-items: center;
-  gap: 7px;
+  margin-top: 5px;
   color: var(--muted);
   font-size: 12px;
 }
 
-.donut-legend strong {
-  color: var(--text);
+/* Donut chart legend */
+
+.donut-legend {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 14px 24px;
+  margin: 8px 0 2px;
+}
+
+.donut-legend > div {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  min-width: 0;
+  color: var(--muted);
+  font-size: 12px;
 }
 
 .legend-dot {
+  display: inline-block;
+  flex-shrink: 0;
   width: 9px;
   height: 9px;
   border-radius: 50%;
 }
 
-.completed-dot {
-  background: #D99AC2;
+.donut-legend strong {
+  margin-left: 3px;
+  color: var(--text);
+  font-weight: 800;
 }
 
-.remaining-dot {
-  background: #E9E0EF;
+/* Dark mode */
+
+.app.dark .chart-card {
+  box-shadow: 0 6px 25px #00000012;
 }
 
-.chart-empty {
-  display: flex;
-  min-height: 200px;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  color: var(--muted);
-  font-size: 36px;
+.app.dark .trend-select {
+  color-scheme: dark;
 }
 
-.chart-empty p {
-  font-size: 12px;
-}
+/* Tablet and mobile */
 
-@media (max-width: 650px) {
+@media (max-width: 760px) {
   .analytics-grid {
     grid-template-columns: minmax(0, 1fr);
+    gap: 14px;
   }
 
-  .donut-chart {
+  .donut-card {
     grid-column: auto;
   }
 
@@ -178,33 +209,41 @@
   }
 
   .chart-card {
-    padding: 16px 12px;
+    padding: 18px 14px;
+  }
+
+  .chart-container {
+    height: 250px;
+  }
+
+  .donut-container {
+    height: 240px;
   }
 }
-.chart-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  margin-bottom: 12px;
-}
 
-.chart-header h3 {
-  margin: 0;
-}
+@media (max-width: 380px) {
+  .chart-header {
+    align-items: flex-start;
+  }
 
-.trend-select {
-  padding: 8px 12px;
-  border: 1px solid var(--border-color, #e5dff0);
-  border-radius: 10px;
-  background: var(--card-bg, #ffffff);
-  color: var(--text-color, #393344);
-  font: inherit;
-  font-size: 13px;
-  cursor: pointer;
-  outline-offset: 3px;
-}
+  .chart-header h3 {
+    font-size: 14px;
+  }
 
-.trend-select:focus {
-  outline: 2px solid #b9a1f5;
+  .trend-select {
+    padding: 7px 8px;
+    font-size: 11px;
+  }
+
+  .chart-container {
+    height: 220px;
+  }
+
+  .donut-container {
+    height: 230px;
+  }
+
+  .donut-legend {
+    gap: 12px;
+  }
 }
